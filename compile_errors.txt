@@ -1,0 +1,18 @@
+﻿app/(dashboard)/recruiter/talent/page.tsx(117,63): error TS2345: Argument of type 'string | number' is not assignable to parameter of type 'SetStateAction<string | null>'.
+  Type 'number' is not assignable to type 'SetStateAction<string | null>'.
+frontend/src/app/dashboard/hr/page.tsx(6,37): error TS2307: Cannot find module '@/components/charts/PipelineFunnelChart' or its corresponding type declarations.
+frontend/src/app/dashboard/hr/page.tsx(7,28): error TS2307: Cannot find module '@/components/charts/SkillRadar' or its corresponding type declarations.
+frontend/src/app/dashboard/institution/page.tsx(6,25): error TS2307: Cannot find module '@/components/charts/Heatmap' or its corresponding type declarations.
+frontend/src/app/dashboard/institution/page.tsx(7,33): error TS2307: Cannot find module '@/components/charts/GrowthLineChart' or its corresponding type declarations.
+frontend/src/app/dashboard/layout.tsx(1,29): error TS2307: Cannot find module '@/components/layout/DashboardLayout' or its corresponding type declarations.
+frontend/src/app/dashboard/student/page.tsx(5,28): error TS2307: Cannot find module '@/components/charts/SkillRadar' or its corresponding type declarations.
+frontend/src/app/dashboard/student/page.tsx(6,33): error TS2307: Cannot find module '@/components/charts/GrowthLineChart' or its corresponding type declarations.
+frontend/src/app/page.tsx(1,25): error TS2307: Cannot find module '@/components/landing/HeroSection' or its corresponding type declarations.
+lib/auth/session.ts(11,5): error TS2741: Property 'name' is missing in type '{ id: string; email: string; role: "student"; createdAt: Date; }' but required in type 'User'.
+lib/firebase/validated-db.ts(18,55): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+lib/firebase/validated-db.ts(19,56): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+lib/firebase/validated-db.ts(19,67): error TS7006: Parameter 'e' implicitly has an 'any' type.
+lib/firebase/validated-db.ts(37,38): error TS2339: Property 'partial' does not exist on type 'T'.
+lib/firebase/validated-db.ts(42,55): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+lib/firebase/validated-db.ts(43,56): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+lib/firebase/validated-db.ts(43,67): error TS7006: Parameter 'e' implicitly has an 'any' type.

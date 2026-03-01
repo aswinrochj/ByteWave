@@ -1,0 +1,82 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // --- HELPER FUNCTIONS ---
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // --- COLLECTIONS ---
+
+    /**
+     * Users Collection: Profiles for students, recruiters, and institutions.
+     */
+    match /users/{userId} {
+      allow read: if isAuthenticated(); // Authenticated users can see other profiles
+      allow write: if isOwner(userId);  // But only the owner can modify their profile
+    }
+
+    /**
+     * Recruiters Collection: Role-specific data for hiring managers.
+     */
+    match /recruiters/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+    }
+
+    /**
+     * Institutions Collection: Role-specific data for colleges/universities.
+     */
+    match /institutions/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+    }
+
+    /**
+     * Jobs Collection: Listings posted by recruiters.
+     */
+    match /jobs/{jobId} {
+      allow read: if isAuthenticated(); // Anyone signed in can browse jobs
+      allow create: if isAuthenticated(); // Authenticated users (recruiters) can post
+      // Only the recruiter who posted the job can update or delete it
+      allow update, delete: if isAuthenticated() && (resource.data.userId == request.auth.uid);
+    }
+
+    /**
+     * Applications: Students applying for jobs.
+     */
+    match /applications/{appId} {
+      // Students can see their own applications, recruiters can see apps for their jobs
+      allow read: if isAuthenticated() && (
+        resource.data.studentId == request.auth.uid || 
+        resource.data.recruiterId == request.auth.uid
+      );
+      // Only students can create applications
+      allow create: if isAuthenticated() && (request.resource.data.studentId == request.auth.uid);
+      // Status updates allowed for both student (cancel) and recruiter (process)
+      allow update: if isAuthenticated() && (
+        resource.data.studentId == request.auth.uid || 
+        resource.data.recruiterId == request.auth.uid
+      );
+    }
+
+    /**
+     * Analytics & Statistics: General platform activity.
+     */
+    match /stats/{statId} {
+      allow read: if isAuthenticated();
+      allow write: if false; // Only system processes (Admin SDK) should update stats
+    }
+
+    // --- DEFAULT DENY (RELAXED FOR SEEDING - REVERT FOR PRODUCTION) ---
+    match /{document=**} {
+      allow read, write: if true; 
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dynamic B Logo -->
+  <rect x="0" y="0" width="60" height="60" rx="12" fill="url(#grad1)" />
+  <path d="M15 15H35C40.5228 15 45 19.4772 45 25V35C45 40.5228 40.5228 45 35 45H15V15Z" fill="white" fill-opacity="0.2"/>
+  <path d="M20 20H30C32.7614 20 35 22.2386 35 25V35C35 37.7614 32.7614 40 30 40H20V20Z" stroke="white" stroke-width="4"/>
+  
+  <!-- Text -->
+  <text x="75" y="42" font-family="Arial, sans-serif" font-weight="bold" font-size="32" fill="white">Bytewave</text>
+  
+  <defs>
+    <linearGradient id="grad1" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#9333EA"/>
+    </linearGradient>
+  </defs>
+</svg>
